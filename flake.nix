@@ -1,5 +1,5 @@
 {
-  description = "FriendlyElec Nanopi6 Linux kernel v6.1.141";
+  description = "FriendlyElec Nanopi6 Linux kernel v6.1.141 optimized for NanoPi6";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -27,22 +27,25 @@
               sha256 = "1fp79sb1xmpp48m6g6a32036nrjpxnnjldx2ap7al40salkzgz6p";
             };
 
-            kernelPatches = [
-
-              # Optional: additional config you need
-              {
-                name = "nanopi6 nanopi6 defconfig";
-                patch = null;
-                extraConfig = '''';
-              }
-
+            nativeBuildInputs = [
+              pkgs.flex
+              pkgs.bison
+              pkgs.python3
+              pkgs.perl
             ];
 
+            extraMakeFlags = [ "-j2" ]; # reduce parallelism for low-RAM boards
+
             extraConfig = ''
-              # additional config if needed
+              # Disable optional heavy modules to avoid build errors
+              CONFIG_OPENVSWITCH=n
+              CONFIG_VSOCK=n
+              CONFIG_VMW_VSOCK=n
+              CONFIG_QRTR=n
+              CONFIG_BATMAN_ADV=n
+              CONFIG_HSR=n
             '';
 
-            # modules must be built and installed
             autoModules = true;
             ignoreConfigErrors = true;
           }
