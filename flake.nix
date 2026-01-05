@@ -26,7 +26,7 @@
             owner = "friendlyarm";
             repo = "r8125";
             rev = "main";
-            hash = "sha256-BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=";
+            hash = "sha256-ZX/BsuxQONH4nyHZNnE9oqcQJdzfc+1ollpf8wOJ5Qc=";
           };
 
           nativeBuildInputs = [
