@@ -36,15 +36,7 @@
 
             extraMakeFlags = [ "-j2" ]; # reduce parallelism for low-RAM boards
 
-            extraConfig = ''
-              # Disable optional heavy modules to avoid build errors
-              CONFIG_OPENVSWITCH=n
-              CONFIG_VSOCK=n
-              CONFIG_VMW_VSOCK=n
-              CONFIG_QRTR=n
-              CONFIG_BATMAN_ADV=n
-              CONFIG_HSR=n
-            '';
+            extraConfig = '''';
 
             autoModules = true;
             ignoreConfigErrors = true;
