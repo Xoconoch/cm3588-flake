@@ -33,9 +33,7 @@
               {
                 name = "nanopi6 nanopi6 defconfig";
                 patch = null;
-                extraConfig = ''
-                  CONFIG_LOCALVERSION=-friendlyelec
-                '';
+                extraConfig = '''';
               }
 
             ];
