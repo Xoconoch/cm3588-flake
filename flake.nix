@@ -12,7 +12,7 @@
       pkgs = import nixpkgs { inherit system; };
     in
     {
-      packages.${system}.nanopi6Kernel = pkgs.recurseIntoAttrs (
+      packages.${system}.nanopi6Kernel = pkgs.lib.recurseIntoAttrs (
         pkgs.linuxPackagesFor (
           pkgs.buildLinux {
             inherit (pkgs) stdenv;
