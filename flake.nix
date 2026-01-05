@@ -24,7 +24,7 @@
               owner = "friendlyarm";
               repo = "kernel-rockchip";
               rev = "ebb487a1ce6e8970638a243b27eb95b9adc9ece1";
-              hash = "sha256‑1/z3J1UaEKrOVaI3Kq3tV2ZrBhBDmWcqIvfWHpZO57o=";
+              sha256 = "sha256‑1/z3J1UaEKrOVaI3Kq3tV2ZrBhBDmWcqIvfWHpZO57o=";
             };
 
             kernelPatches = [
