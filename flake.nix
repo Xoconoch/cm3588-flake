@@ -1,5 +1,5 @@
 {
-  description = "FriendlyElec Nanopi6 Linux kernel v6.1.141 optimized for NanoPi6";
+  description = "Minimal flake: Linux 6.1 kernel with FriendlyElec source";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -8,46 +8,28 @@
   outputs =
     { self, nixpkgs }:
     let
-      system = "aarch64-linux";
+      system = "aarch64-linux"; # Target architecture
       pkgs = import nixpkgs { inherit system; };
     in
     {
-      packages.${system}.nanopi6Kernel = pkgs.lib.recurseIntoAttrs (
-        pkgs.linuxPackagesFor (
-          pkgs.buildLinux {
-            inherit (pkgs) stdenv;
+      packages.${system}.nanopi6Kernel = pkgs.linuxPackagesFor (
+        pkgs.linux_6_1.overrideAttrs (old: {
+          version = "6.1.118-friendlyelec";
+          modDirVersion = "6.1.118";
 
-            version = "6.1.141-friendlyelec";
-            modDirVersion = "6.1.141";
+          src = pkgs.fetchFromGitHub {
+            owner = "friendlyarm";
+            repo = "kernel-rockchip";
+            rev = "ebb487a1ce6e8970638a243b27eb95b9adc9ece1";
+            sha256 = "1fp79sb1xmpp48m6g6a32036nrjpxnnjldx2ap7al40salkzgz6p";
+          };
 
-            src = pkgs.fetchFromGitHub {
-              owner = "friendlyarm";
-              repo = "kernel-rockchip";
-              rev = "ebb487a1ce6e8970638a243b27eb95b9adc9ece1";
-              sha256 = "1fp79sb1xmpp48m6g6a32036nrjpxnnjldx2ap7al40salkzgz6p";
-            };
-
-            nativeBuildInputs = [
-              pkgs.flex
-              pkgs.bison
-              pkgs.python3
-              pkgs.perl
-            ];
-
-            extraMakeFlags = [ "-j2" ]; # reduce parallelism for low-RAM boards
-
-            extraConfig = '''';
-
-            autoModules = true;
-            ignoreConfigErrors = true;
-          }
-        )
+          # Optional: extra kernel config
+          extraConfig = ''
+            autoModules = true
+            ignoreConfigErrors = true
+          '';
+        })
       );
-
-      nixosModules.nanopi6KernelConfig =
-        { }:
-        {
-          boot.kernelPackages = self.packages.${system}.nanopi6Kernel;
-        };
     };
 }
