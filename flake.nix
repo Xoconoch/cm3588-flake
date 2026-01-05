@@ -1,5 +1,5 @@
 {
-  description = "FriendlyElec Nanopi6 Linux kernel v6.1.118";
+  description = "FriendlyElec Nanopi6 Linux kernel v6.1.141";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -17,8 +17,8 @@
           pkgs.buildLinux {
             inherit (pkgs) stdenv;
 
-            version = "6.1.118-friendlyelec";
-            modDirVersion = "6.1.118";
+            version = "6.1.141-friendlyelec";
+            modDirVersion = "6.1.141";
 
             src = pkgs.fetchFromGitHub {
               owner = "friendlyarm";
