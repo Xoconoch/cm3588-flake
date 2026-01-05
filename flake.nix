@@ -18,14 +18,14 @@
           src = pkgs.fetchFromGitHub {
             owner = "friendlyarm";
             repo = "kernel-rockchip";
-            rev = "nanopi6-v6.1.y";
-            hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+            rev = "ebb487a1ce6e8970638a243b27eb95b9adc9ece1";
+            hash = "sha256-1/z3J1UaEKrOVaI3Kq3tV2ZrBhBDmWcqIvfWHpZO57o=";
           };
 
           r8125Src = pkgs.fetchFromGitHub {
             owner = "friendlyarm";
             repo = "r8125";
-            rev = "main";
+            rev = "c4cb053bff438fac317e2371cce45985098e4c49";
             hash = "sha256-ZX/BsuxQONH4nyHZNnE9oqcQJdzfc+1ollpf8wOJ5Qc=";
           };
 
